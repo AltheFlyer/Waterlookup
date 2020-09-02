@@ -15,13 +15,14 @@ courses = wdatabase.CourseDB("courses.db")
 async def lookup(ctx, arg):
     arg = arg.upper()
     course = courses.lookup(arg)
-    id = course[1]
-    title = course[4]
-    units = course[5]
-    desc = course[6]
-    level = course[7]
 
     if course:
+        id = course[1]
+        title = course[4]
+        units = course[5]
+        desc = course[6]
+        level = course[7]
+
         embed = discord.Embed(title=arg, color=0xffd54f)
         embed.add_field(name=title, value=desc, inline=False)
         embed.add_field(name="ID", value=id, inline=True)
