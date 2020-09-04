@@ -24,6 +24,7 @@ async def lookup(ctx, arg):
         level = course[7]
 
         embed = discord.Embed(title=arg, color=0xffd54f)
+        embed.set_thumbnail(url='https://uwaterloo.ca/brand/sites/ca.brand/files/styles/body-500px-wide/public/uploads/images/university-of-waterloo-vertical-logo.png?itok=9KCQdLsy')
         embed.add_field(name=title, value=desc, inline=False)
         embed.add_field(name="ID", value=id, inline=True)
         embed.add_field(name="Units", value=units, inline=True)
