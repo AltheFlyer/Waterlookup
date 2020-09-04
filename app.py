@@ -7,8 +7,12 @@ TOKEN = os.environ.get('WLOOKUP_BOT_SECRET')
 
 
 bot = commands.Bot(command_prefix='!w')
-
 courses = wdatabase.CourseDB("courses.db")
+
+
+@bot.event
+async def on_ready():
+    await bot.change_presence(activity=discord.Game(name='!winfo'))
 
 
 @bot.command()
@@ -17,7 +21,7 @@ async def info(ctx):
 
     embed.add_field(name="`!winfo`", value="Get info about this bot.", inline=True)
     embed.add_field(name="`!wlookup course`", value="Looks up information for the course of the given name, if it exists.", inline=True)
-    embed.add_field(name="`!wlookup partial", value="Provides a list of courses that start with the partial course name.", inline=True)
+    embed.add_field(name="`!wlookup partial`", value="Provides a list of courses that start with the partial course name.", inline=True)
     embed.add_field(name="`!wlookup subject`", value="Provides a list of courses in the subject, and the number of results.", inline=True)
 
     embed.set_footer(text="Last Updated 2020-08-31")
