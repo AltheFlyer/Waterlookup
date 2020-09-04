@@ -1,5 +1,6 @@
 import sqlite3
 
+
 class CourseDB:
     def __init__(self, db):
         self.conn = sqlite3.connect(db)
@@ -10,6 +11,24 @@ class CourseDB:
         self.cursor.execute("""
             SELECT * 
             FROM courses
-            WHERE searchby=? 
+            WHERE searchby=?;
         """, t)
         return self.cursor.fetchone()
+
+    def lookup_partial(self, searchby: str):
+        t = (searchby + "%",)
+        self.cursor.execute("""
+            SELECT *
+            FROM courses
+            WHERE searchby LIKE ?;
+        """, t)
+        return self.cursor.fetchall()
+
+    def lookup_subject(self, searchby: str):
+        t = (searchby,)
+        self.cursor.execute("""
+            SELECT *
+            FROM courses
+            WHERE subject=?;
+        """, t)
+        return self.cursor.fetchall()

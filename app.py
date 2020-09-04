@@ -31,7 +31,26 @@ async def lookup(ctx, arg):
         embed.add_field(name="Academic Level", value=level, inline=True)
 
         await ctx.send(embed=embed)
+    elif course_list:=courses.lookup_partial(arg):
+        search_len = len(course_list)
+        course_list = [course[8] for course in course_list]
+        course_list = course_list[0:20]
+
+        output = ""
+        for course in course_list:
+            output += course + ", "
+
+        output = output[0:-2]
+        if search_len > len(course_list):
+            output += "..."
+
+        embed = discord.Embed(title="Searches for " + arg, color=0xffd54f)
+        embed.add_field(name="Results", value=output, inline=False)
+        embed.add_field(name="Total Results", value=search_len)
+
+        await ctx.send(embed=embed)
     else:
         await ctx.send("Course '" + arg + "' not found")
+
 
 bot.run(TOKEN)
