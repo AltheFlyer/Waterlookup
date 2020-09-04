@@ -12,6 +12,20 @@ courses = wdatabase.CourseDB("courses.db")
 
 
 @bot.command()
+async def info(ctx):
+    embed = discord.Embed(title="Info", color=0xffd54f, description="This bot looks up information for Waterloo courses. Uses the Waterloo API (v2) for course information.")
+
+    embed.add_field(name="`!winfo`", value="Get info about this bot.", inline=True)
+    embed.add_field(name="`!wlookup course`", value="Looks up information for the course of the given name, if it exists.", inline=True)
+    embed.add_field(name="`!wlookup partial", value="Provides a list of courses that start with the partial course name.", inline=True)
+    embed.add_field(name="`!wlookup subject`", value="Provides a list of courses in the subject, and the number of results.", inline=True)
+
+    embed.set_footer(text="Last Updated 2020-08-31")
+
+    await ctx.send(embed=embed)
+
+
+@bot.command()
 async def lookup(ctx, arg):
     arg = arg.upper()
     course = courses.lookup(arg)

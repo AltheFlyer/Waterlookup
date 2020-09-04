@@ -1,6 +1,7 @@
 # This file downloads from the API to a database
 # Slightly messy due to transfer from a Jupyter Notebook
 # Copy fragments of this to a notebook to see the data contained in each step
+# Not included in requirements.txt since this file is not expected to run with the bot
 
 import requests
 import json
